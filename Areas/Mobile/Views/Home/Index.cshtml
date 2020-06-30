@@ -1,0 +1,72 @@
+﻿@model Model.ViewModel.Home.IndexModel
+<!DOCTYPE html>
+<html>
+<head>
+    <title>在线工具箱</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    <meta name="description" content="Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.">
+
+    <link rel="stylesheet" href="/Mobile/css/weui.min.css">
+    <link rel="stylesheet" href="/Mobile/css/jquery-weui.css">
+    <link rel="stylesheet" href="/Mobile/css/demos.css">
+    <link rel="stylesheet" href="/Mobile/css/weuix.css" />
+    <script src="/Mobile/js/jquery-2.1.4.js"></script>
+</head>
+
+<body ontouchstart>
+    @await Html.PartialAsync("_Sidebar")
+    <header class='demos-header'>
+        <h1 class="demos-title">
+            在线工具箱
+        </h1>
+        <p class='demos-sub-title'>专业实用在线工具聚合平台</p>
+    </header>
+    @foreach (var menu in Model.MenuListModels.GroupBy(a => a.MenuName))
+    {
+        <header class='demos-header'>
+            <h2 class="demos-second-title">
+                @menu.Key
+            </h2>
+        </header>
+        <div class="weui-grids">
+            @foreach (var item in menu)
+            {
+            <a href="@item.ToolSrc" class="weui-grid js_grid">
+                <div class="weui-grid__icon">
+                    <img src="/Mobile/Images/Menu/@(item.ToolId).png" alt="@item.ToolName">
+                </div>
+                <p class="weui-grid__label">
+                    @item.ToolName
+                </p>
+                @switch (item.UseType)
+                {
+                    case 0:
+                        <span class="weui-mark-rt bg-green">免费</span>
+                        break;
+                    case 1:
+                        <span class="weui-mark-rt bg-gold">VIP</span>
+                        break;
+                    case 2:
+                        <span class="weui-mark-rt bg-orange">收费</span>
+                        @*<div class="weui-mark-vip"><span class="weui-mark-lt bg-orange">VIP半价</span></div>*@
+                        break;
+                }
+            </a>
+            }
+        </div>
+    }
+    <script src="/Mobile/js/fastclick.js"></script>
+    <script>
+        $(function () {
+            FastClick.attach(document.body);
+        });
+
+    </script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,56 @@
+﻿    <!--侧边栏-开始-->
+<div class="icon icon-81 f25 iblock" navbar-toggle></div>
+<div class="weui-navs" navbar>
+    <h2>186****7046</h2>
+    <ul>
+        <li class="nav-item">
+            <a onclick="navItem(this)"><i class="icon nav-icon icon-49"></i><span>网站配置</span><i class="icon nav-more"></i></a>
+            <ul>
+                <li><a href="javascript:void(0);"><span>网站设置</span></a></li>
+                <li><a href="javascript:void(0);"><span>友情链接</span></a></li>
+                <li><a href="javascript:void(0);"><span>分类管理</span></a></li>
+                <li><a href="javascript:void(0);"><span>系统日志</span></a></li>
+            </ul>
+        </li>
+
+        <li class="nav-item">
+            <a href="javascript:void(0);"><i class="icon nav-icon icon-49"></i><span>订单管理</span></a>
+
+        </li>
+        <li class="nav-item">
+            <a onclick="navItem(this)"><i class="icon nav-icon icon-49"></i><span>文章管理</span><i class="icon nav-more"></i></a>
+            <ul>
+                <li><a href="javascript:void(0);"><span>站内新闻</span></a></li>
+                <li><a href="javascript:void(0);"><span>站内公告</span></a></li>
+                <li><a href="javascript:void(0);"><span>登录日志</span></a></li>
+            </ul>
+        </li>
+
+    </ul>
+</div>
+<script src="/Mobile/js/jquery-weui.js"></script>
+<script src="/Mobile/js/zepto.weui.min.js"></script>
+<script src="/Mobile/js/sidebar.js"></script>
+<script>
+    $(function () {
+        //侧边栏脚本
+        var sidebarjs = new SidebarJS('navbar');
+    })
+    //侧边栏点击显示子节点
+    function navItem(obj) {
+        $(".weui-navs ul ul li").removeClass('active');
+        if ($(obj).next('ul').css('display') == "none") {
+            $('.nav-item').children('ul').hide();
+            //展开
+            $('.nav-item').children('ul').hide();
+            $(obj).next('ul').show();
+            $(obj).parent('li').addClass('nav-show').siblings('li').removeClass('nav-show');
+        } else {
+            $('.nav-item').children('ul').hide();
+            //收缩
+            $(obj).next('ul').hide();
+            $('.nav-item.nav-show').removeClass('nav-show');
+        }
+    }
+</script>
+<!--侧边栏-结束-->
